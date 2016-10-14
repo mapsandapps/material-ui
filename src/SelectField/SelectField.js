@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import keycode from 'keycode';
 import TextField from '../TextField';
 import DropDownMenu from '../DropDownMenu';
+import deprecated from '../utils/deprecatedPropType';
 
 function getStyles(props) {
   return {
@@ -109,6 +110,11 @@ class SelectField extends Component {
     /** @ignore */
     onFocus: PropTypes.func,
     /**
+     * Override the inline-styles of the underlying `DropDownMenu` element.
+     */
+    selectFieldRoot: deprecated(PropTypes.object,
+      'Instead, use `menuStyle`. It will be removed with v0.16.0.'),
+    /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
@@ -177,6 +183,7 @@ class SelectField extends Component {
       underlineFocusStyle,
       underlineStyle,
       errorStyle,
+      selectFieldRoot,
       disabled,
       floatingLabelFixed,
       floatingLabelText,
@@ -209,14 +216,6 @@ class SelectField extends Component {
           {...other}
           style={style}
           disabled={disabled}
-          // style={Object.assign(styles.dropDownMenu, menuStyle)}
-          // labelStyle={Object.assign(styles.label, labelStyle)}
-          // iconStyle={Object.assign(styles.icon, iconStyle)}
-          // underlineStyle={styles.hideDropDownUnderline}
-          // autoWidth={autoWidth}
-          // value={value}
-          // onChange={onChange}
-          // maxHeight={maxHeight}
           floatingLabelFixed={floatingLabelFixed}
           floatingLabelText={floatingLabelText}
           floatingLabelStyle={floatingLabelStyle}
